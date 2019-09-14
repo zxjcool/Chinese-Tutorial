@@ -1,3 +1,4 @@
+## 张小娟已完成find-elevations-with-tilequery-api.md文件翻译@coffee-gh 
 ---
 title: Find elevations with the Tilequery API
 description: Use the Mapbox Tilequery API and the Mapbox Terrain tileset to create an app that returns the elevation at a specified coordinate.
@@ -21,28 +22,38 @@ contentType: tutorial
 ---
 
 In this tutorial, you will use the [Mapbox Tilequery API](https://docs.mapbox.com/api/maps/#tilequery) and the [Mapbox Terrain vector tileset](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/) to create an app that, when a user clicks a point on the map, returns the elevation at that point.
+在本教程中，您将使用[Mapbox Tilequery API](https://docs.mapbox.com/api/maps/#tilequery)和 [Mapbox Terrain vector tileset](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/)来创建应用，当用户单击地图上的某个点时，可以返回该点的高程。
 
 {{
   <DemoIframe src="/help/demos/find-elevations-with-tilequery-api/index.html" />
 }}
 
 ## Getting started
+## 开始
 To complete this tutorial, you will need:
-
 - **A Mapbox access token.** Your Mapbox access tokens are on your [Account page](https://account.mapbox.com/).
 - **Mapbox GL JS.** [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/overview/) is a JavaScript API for building web maps.
 - **Mapbox Tilequery API.** The [Tilequery API](https://docs.mapbox.com/api/maps/#tilequery) allows you to retrieve data about specific features from a vector tileset, based on a given latitude and longitude.  
 - **Mapbox Terrain vector tileset.** The [Mapbox Terrain](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/) vector tileset provides terrain data, including [elevation contours](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/#elevation).
 - **jQuery.** [jQuery](https://jquery.com/) is a JavaScript library you will use to add your API request to the application.
 - **A text editor.** Use the text editor of your choice for writing HTML, CSS, and JavaScript.
+要完成本教程，您需要：
+- **一个Mapbox访问令牌。**您的访问令牌位于您的账号页面。
+- **Mapbox GL JS。**Mapbox GL JS是用于构建Web地图的JavaScript API。
+- **Mapbox Tilequery API。**该Tilequery API允许您基于给定的经纬度，从一个矢量瓦片数据集中检索特定要素的相关数据。
+- **Mapbox地形矢量瓦片数据。**Mapbox地形矢量瓦片数据集提供地形数据，包括等高线。
+- **jQuery。**jQuery是一个JavaScript库，可以将您的API请求添加到应用程序中。
+- **文本编辑器。**使用您选择的文本编辑器编写HTML，CSS和JavaScript。
 
 ## Create a map
+## 创建地图
 To get started, you will create a map using [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/).
-
+首先，您将使用Mapbox GL JS(https://docs.mapbox.com/mapbox-gl-js/api/)创建地图。
 Open your text editor and create a new file named `index.html`. Set up this new HTML file by pasting the following code into your text editor. This code creates the structure of the page. This code also imports Mapbox GL JS and jQuery in the `<head>` of the page. The Mapbox GL JS JavaScript and CSS files allow you to use Mapbox GL JS functionality and style, while jQuery will allow you to use [Ajax](https://api.jquery.com/jquery.ajax/) to parse your Tilequery API call.
+打开文本编辑器并创建一个名为`index.html`的新文件。将下面的代码粘贴到刚创建的index.html文件中。这些代码创建了页面的结构。还在页面的`<head>`中引入了Mapbox GL JS和jQuery。Mapbox GL JS的JS和CSS文件允许您使用Mapbox GL JS中的方法和样式，而jQuery将允许您使用[Ajax](https://api.jquery.com/jquery.ajax/)来解析您对Tilequery API调用。
 
 There is also a `<div>` element with the ID `map` in the `<body>` of the page. This `<div>` is the container in which the map will be displayed on the page.
-
+同时，在页面的`<body>`中还有一个ID值为`map`的`<div>`元素。 此`<div>`是地图显示在页面上的容器。
 ```html
 <!DOCTYPE html>
 <html>
@@ -90,12 +101,15 @@ There is also a `<div>` element with the ID `map` in the `<body>` of the page. T
 ```
 
 This Mapbox GL JS code sets the style for the map to [Mapbox Outdoors](https://docs.mapbox.com/api/maps/#mapbox-styles), gives it coordinates on which to center, and sets a zoom level.
+此Mapbox GL JS代码将地图的样式设置为[Mapbox Outdoors](https://docs.mapbox.com/api/maps/#mapbox-styles)，为其提供居中的坐标，并设置缩放级别。
 
 Save your changes. Open the HTML file in your browser to see the rendered map, which is centered on San Francisco.
+保存。 在浏览器中打开HTML文件，查看以旧金山为中心的地图。
 
 ## Get coordinates when a user clicks
+## 用户点击获取坐标
 In this app, the coordinates used in the Tilequery API request will be generated when a user clicks on the map. To get these coordinates, you will create a `map.on('click')` function that gets the longitude and the latitude at the clicked location. Add the following JavaScript above the closing `</script>` tag in your HTML file:
-
+在此应用程序中，当用户单击地图时，将生成Tilequery API请求中使用的坐标。想要获得这些坐标，您需要创建一个`map.on（'click'）`函数，该函数将获取点击位置的经、纬度。在您的HTML文件中的结束`</script>`标记上方添加以下JavaScript代码：
 ```js
 // Create variables for the latitude and longitude
 var lng;
@@ -110,16 +124,20 @@ map.on('click', function(e) {
 ```
 
 When the map is clicked, the returned event includes a Mapbox GL JS [`lngLat` object](https://docs.mapbox.com/mapbox-gl-js/api/#lnglat), which includes the longitude and latitude of the clicked point. The `map.on('click')` function sets the `lng` and `lat` variables equal to these properties.
+当点击地图时，返回的事件包括Mapbox GL JS 的一个[`lngLat`对象](https://docs.mapbox.com/mapbox-gl-js/api/#lnglat)，它包含点击点的经、纬度。`map.on（'click'）`函数将这些属性赋值给`lng`、`lat`变量。
 
 Save your work, then refresh your browser page and open the browser's developer tools. When you click on the map, your app will print the clicked point's longitude and latitude to the JavaScript console.
+保存，然后刷新您的浏览器页面并打开开发者工具。当您单击地图时，您的应用程序会将点击点的经、纬度打印到JavaScript控制台。
 
 {{
 <AppropriateImage imageId="tilequeryElevationLngLatOnClick" alt="Screenshot showing two coordinate pairs printed to the developer console" />
 }}
 
 ## Add the sidebar
+## 添加侧边栏
 
 In the `<body>` of your HTML, add a new `<div>`. This `<div>` will be used to show the clicked point's longitude, latitude, and elevation:
+在您的HTML文件的`<body>`中，添加一个新的`<div>`标签。这个`<div>`标签将用于显示点击的点的经度，纬度和高程：
 
 ```html
 <div class="eleInfo">
@@ -130,7 +148,7 @@ In the `<body>` of your HTML, add a new `<div>`. This `<div>` will be used to sh
 ```
 
 To style the new `<div>`, add the following CSS to the `<style>` section of your HTML:
-
+对新的`<div>`设置样式，请将以下的CSS代码添加到您的HTML文件的`<style>`中：
 ```css
 .eleInfo {
   position: absolute;
@@ -147,6 +165,7 @@ To style the new `<div>`, add the following CSS to the `<style>` section of your
 ```
 
 Finally, create three new variables that you will use to target the new `<span>` IDs. Add the following code in your JavaScript, below the `lng` and `lat` variables:
+最后，创建三个新变量，用于接收新的`<span>`标签的ID值。在您的JavaScript中，在`lng`和`lat`变量下面添加以下代码：
 
 ```js
 var lngDisplay = document.getElementById('lng');
@@ -154,13 +173,15 @@ var latDisplay = document.getElementById('lat');
 var eleDisplay = document.getElementById('ele');
 ```
 
-Save your work and refresh the page. The new sidebar will be on the left side of the page. In an upcoming step, you will use the `<span>` IDs that you created to display the longitude, latitude, and elevation in the sidebar.  
+Save your work and refresh the page. The new sidebar will be on the left side of the page. In an upcoming step, you will use the `<span>` IDs that you created to display the longitude, latitude, and elevation in the sidebar. 
+保存并刷新页面。添加的侧边栏将位于页面的左侧。接下来，您可以通过创建的`<span>`标签的ID值在侧栏中显示经度、纬度和高程。
 
 {{
 <AppropriateImage imageId="tilequeryElevationSidebar" alt="Screenshot showing a sidebar on the map that contains the words Longitude, Latitude, and Elevation" />
 }}
 
 ## Tilequery API request format
+## Tilequery API请求格式
 The [Mapbox Tilequery API](https://docs.mapbox.com/api/maps/#tilequery) allows you to retrieve data about specific features from a vector tileset, based on a given latitude and longitude.
 
 A Tilequery request has two **required** two parameters:
