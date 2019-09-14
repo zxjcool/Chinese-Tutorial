@@ -1,3 +1,4 @@
+## 张小娟已完成find-elevations-with-tilequery-api.md文件翻译@coffee-gh 
 ---
 title: Find elevations with the Tilequery API
 description: Use the Mapbox Tilequery API and the Mapbox Terrain tileset to create an app that returns the elevation at a specified coordinate.
@@ -21,12 +22,14 @@ contentType: tutorial
 ---
 
 In this tutorial, you will use the [Mapbox Tilequery API](https://docs.mapbox.com/api/maps/#tilequery) and the [Mapbox Terrain vector tileset](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/) to create an app that, when a user clicks a point on the map, returns the elevation at that point.
+在本教程中，您将使用[Mapbox Tilequery API](https://docs.mapbox.com/api/maps/#tilequery)和 [Mapbox Terrain vector tileset](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/)来创建应用，当用户单击地图上的某个点时，可以返回该点的高程。
 
 {{
   <DemoIframe src="/help/demos/find-elevations-with-tilequery-api/index.html" />
 }}
 
 ## Getting started
+##
 To complete this tutorial, you will need:
 
 - **A Mapbox access token.** Your Mapbox access tokens are on your [Account page](https://account.mapbox.com/).
