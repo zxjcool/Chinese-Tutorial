@@ -1,3 +1,4 @@
+## 张小娟已完成find-elevations-with-tilequery-api.md文件翻译@coffee-gh 
 ---
 title: Find elevations with the Tilequery API
 description: Use the Mapbox Tilequery API and the Mapbox Terrain tileset to create an app that returns the elevation at a specified coordinate.
@@ -21,20 +22,28 @@ contentType: tutorial
 ---
 
 In this tutorial, you will use the [Mapbox Tilequery API](https://docs.mapbox.com/api/maps/#tilequery) and the [Mapbox Terrain vector tileset](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/) to create an app that, when a user clicks a point on the map, returns the elevation at that point.
+在本教程中，您将使用[Mapbox Tilequery API](https://docs.mapbox.com/api/maps/#tilequery)和 [Mapbox Terrain vector tileset](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/)来创建应用，当用户单击地图上的某个点时，可以返回该点的高程。
 
 {{
   <DemoIframe src="/help/demos/find-elevations-with-tilequery-api/index.html" />
 }}
 
 ## Getting started
+## 开始
 To complete this tutorial, you will need:
-
 - **A Mapbox access token.** Your Mapbox access tokens are on your [Account page](https://account.mapbox.com/).
 - **Mapbox GL JS.** [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/overview/) is a JavaScript API for building web maps.
 - **Mapbox Tilequery API.** The [Tilequery API](https://docs.mapbox.com/api/maps/#tilequery) allows you to retrieve data about specific features from a vector tileset, based on a given latitude and longitude.  
 - **Mapbox Terrain vector tileset.** The [Mapbox Terrain](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/) vector tileset provides terrain data, including [elevation contours](https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/#elevation).
 - **jQuery.** [jQuery](https://jquery.com/) is a JavaScript library you will use to add your API request to the application.
 - **A text editor.** Use the text editor of your choice for writing HTML, CSS, and JavaScript.
+要完成本教程，您需要：
+- **一个Mapbox访问令牌。**您的访问令牌位于您的账号页面。
+- **Mapbox GL JS。**Mapbox GL JS是用于构建Web地图的JavaScript API。
+- **Mapbox Tilequery API。**该Tilequery API允许您基于给定的经纬度，从一个矢量瓦片数据集中检索特定要素的相关数据。
+- **Mapbox地形矢量瓦片数据。**Mapbox地形矢量瓦片数据集提供地形数据，包括等高线。
+- **jQuery。**jQuery是一个JavaScript库，可以将您的API请求添加到应用程序中。
+- **文本编辑器。**使用您选择的文本编辑器编写HTML，CSS和JavaScript。
 
 ## Create a map
 To get started, you will create a map using [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/).
